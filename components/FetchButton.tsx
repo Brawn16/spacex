@@ -1,5 +1,6 @@
 import React, { Dispatch, SetStateAction } from 'react';
 import { TouchableOpacity, StyleSheet, Text, Image } from 'react-native';
+import theme from '../styles/theme.style.js';
 
 interface Props {
 	onPress: Dispatch<SetStateAction<{}>>;
@@ -15,7 +16,7 @@ export const FetchButton = ({ onPress, title }: Props) => (
 
 const styles = StyleSheet.create({
 	container: {
-		backgroundColor: '#0d4c8c',
+		backgroundColor: theme.PRIMARY_BUTTON_COLOR,
 		paddingVertical: 10,
 		paddingHorizontal: 12,
 		borderRadius: 20,
@@ -27,7 +28,7 @@ const styles = StyleSheet.create({
 	buttonText: {
 		color: '#fff',
 		alignSelf: 'center',
-		fontSize: 12,
+		fontSize: theme.FONT_SIZE_SMALL,
 		fontFamily: 'BrandonGrotesque',
 	},
 	image: {

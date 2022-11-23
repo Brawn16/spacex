@@ -2,6 +2,7 @@ import { StyleSheet, View, Text } from 'react-native';
 import React from 'react';
 import { months } from '../constants';
 import { getOrdinalNum } from '../helpers';
+import theme from '../styles/theme.style.js';
 
 interface Props {
 	name: string;
@@ -37,19 +38,19 @@ const styles = StyleSheet.create({
 		flexDirection: 'row',
 		justifyContent: 'space-between',
 		borderRadius: 5,
-		borderColor: 'black',
+		borderColor: theme.BORDER_COLOR,
 		borderWidth: 1,
 		marginTop: 5,
 		padding: 15,
 		alignItems: 'center',
 		fontFamily: 'BrandonGrotesque',
-		fontSize: 15,
+		fontSize: theme.FONT_SIZE_MEDIUM,
 	},
 	rightSection: {
 		alignItems: 'center',
 	},
 	date: {
-		fontSize: 10,
+		fontSize: theme.FONT_SIZE_EXTRA_SMALL,
 		color: '#606060',
 	},
 });

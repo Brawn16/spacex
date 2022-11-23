@@ -6,6 +6,16 @@ import { formatFilterByYearOptions } from './helpers';
 import { useFetchData } from './hooks/useFetchData';
 import { useFonts } from 'expo-font';
 import { LaunchInfo } from './types';
+import theme from './styles/theme.style.js';
+
+// Things to change and add
+// 1. More theming and remove magic numbers and improve styling
+// 2. better types - not fully covered yet
+// 3. would make components more re usable eg: icons / images passed in from parent
+// 4. logo title moves when loading
+// 5. better use of loading and actually use error
+// 6. add testing coverage (should be higher up list)
+// 7. check performance eg re renders
 
 export default function App() {
 	const [selected, setSelectedFilter] = React.useState<string>('');
@@ -104,7 +114,7 @@ const styles = StyleSheet.create({
 		paddingTop: 50,
 		paddingHorizontal: 30,
 		flex: 1,
-		backgroundColor: '#fff',
+		backgroundColor: theme.PRIMARY_BACKGROUND_COLOR,
 		alignItems: 'center',
 		justifyContent: 'center',
 		maxHeight: 700,
@@ -134,7 +144,7 @@ const styles = StyleSheet.create({
 	headerText: {
 		fontFamily: 'BrandonGrotesque',
 		fontSize: 20,
-		color: '#606060',
+		color: theme.SECONDARY_TEXT_COLOR,
 		fontWeight: '100',
 	},
 });

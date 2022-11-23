@@ -1,5 +1,6 @@
 import React from 'react';
 import { TouchableOpacity, StyleSheet, Text, Image } from 'react-native';
+import theme from '../styles/theme.style.js';
 
 export const SortByButton = ({ onPress, title }) => (
 	<TouchableOpacity onPress={onPress} style={styles.buttonContainer}>
@@ -10,7 +11,7 @@ export const SortByButton = ({ onPress, title }) => (
 
 const styles = StyleSheet.create({
 	buttonContainer: {
-		backgroundColor: '#0d4c8c',
+		backgroundColor: theme.PRIMARY_BUTTON_COLOR,
 		paddingVertical: 10,
 		paddingHorizontal: 12,
 		width: 140,
@@ -20,9 +21,9 @@ const styles = StyleSheet.create({
 		maxHeight: 43,
 	},
 	buttonText: {
-		color: '#fff',
+		color: theme.PRIMARY_TEXT_COLOR,
 		alignSelf: 'center',
-		fontSize: 12,
+		fontSize: theme.FONT_SIZE_SMALL,
 		fontFamily: 'BrandonGrotesque',
 	},
 	image: {

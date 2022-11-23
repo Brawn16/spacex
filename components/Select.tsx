@@ -1,6 +1,7 @@
 import { SelectList } from 'react-native-dropdown-select-list';
 import { Image, StyleSheet } from 'react-native';
 import React from 'react';
+import theme from '../styles/theme.style.js';
 
 interface Props {
 	options: any[];
@@ -30,13 +31,13 @@ export function Select(props: Props) {
 
 const styles = StyleSheet.create({
 	select: {
-		backgroundColor: '#0d4c8c',
+		backgroundColor: theme.PRIMARY_BUTTON_COLOR,
 		borderRadius: 0,
-		color: 'white',
+		color: theme.PRIMARY_TEXT_COLOR,
 		minWidth: 80,
 		maxWidth: 140,
 		fontFamily: 'BrandonGrotesque',
-		fontSize: 12,
+		fontSize: theme.FONT_SIZE_SMALL,
 	},
 	image: {
 		width: 10,
