@@ -2,7 +2,13 @@ import { SelectList } from 'react-native-dropdown-select-list';
 import { Image, StyleSheet } from 'react-native';
 import React from 'react';
 
-export function Select(props: any) {
+interface Props {
+	options: any[];
+	onSelect: (val: string) => void;
+	placeholder: string;
+}
+
+export function Select(props: Props) {
 	const { options, onSelect, placeholder } = props;
 
 	return (

@@ -1,7 +1,12 @@
-import React from 'react';
+import React, { Dispatch, SetStateAction } from 'react';
 import { TouchableOpacity, StyleSheet, Text, Image } from 'react-native';
 
-export const FetchButton = ({ onPress, title }) => (
+interface Props {
+	onPress: Dispatch<SetStateAction<{}>>;
+	title: string;
+}
+
+export const FetchButton = ({ onPress, title }: Props) => (
 	<TouchableOpacity onPress={onPress} style={styles.container}>
 		<Text style={styles.buttonText}>{title}</Text>
 		<Image style={styles.image} source={require('../assets/refresh.png')} />

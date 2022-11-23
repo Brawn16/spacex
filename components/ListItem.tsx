@@ -13,7 +13,6 @@ export function ListItem(props: Props) {
 	const { name, id, mission } = props;
 
 	const date = new Date(id * 1000);
-
 	const year = date.getFullYear();
 	const month = months[date.getMonth()];
 	const day = date.getDate();

@@ -5,6 +5,7 @@ import { api } from './constants';
 import { formatFilterByYearOptions } from './helpers';
 import { useFetchData } from './hooks/useFetchData';
 import { useFonts } from 'expo-font';
+import { LaunchInfo } from './types';
 
 export default function App() {
 	const [selected, setSelectedFilter] = React.useState<string>('');
@@ -35,7 +36,7 @@ export default function App() {
 
 	const selectData = formatFilterByYearOptions(data);
 
-	const sortedAndFilteredData = (data) => {
+	const sortedAndFilteredData = (data: LaunchInfo[]) => {
 		// uses the selected year option to filter data
 		const filteredData = data.map((item) => {
 			if (
@@ -83,15 +84,15 @@ export default function App() {
 				/>
 			</View>
 			<>
-				{!loading && data ? (
+				{loading ? (
+					<Text>....Loading</Text>
+				) : (
 					<FlatList
 						style={styles.launchList}
 						data={sortedAndFilteredData(data)}
 						renderItem={renderListItem}
 						keyExtractor={(_, i) => i.toString()}
 					/>
-				) : (
-					<Text>....Loading</Text>
 				)}
 			</>
 		</View>

@@ -1,3 +1,5 @@
+import { LaunchInfo } from "./types";
+
 export const formatData = (data) => {
     const newData = data.map((item) => {
         return { mission: item.mission_name,name: item.rocket.rocket_name, launch_year: item.launch_year, id: item.launch_date_unix};
@@ -6,7 +8,7 @@ export const formatData = (data) => {
     return newData;
 };
 
-export const formatFilterByYearOptions = (data)=>{   
+export const formatFilterByYearOptions = (data: LaunchInfo[])=>{   
   return [...new Set(['Any', ...data.map((item) => item.launch_year)])];
 } 
 
