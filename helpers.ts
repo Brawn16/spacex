@@ -1,4 +1,4 @@
-import { LaunchInfo } from "./types";
+import { LaunchInfo, SortBy } from "./types";
 
 export const formatData = (data) => {
     const newData = data.map((item) => {
@@ -26,3 +26,29 @@ export const getOrdinalNum = (number:number) => {
     return number + ['th', 'st', 'nd', 'rd', ''][selector];
   };
     
+
+  export const sortAndFilterData = (
+		data: LaunchInfo[],
+		selected: String,
+		sortBy: SortBy
+	) => {
+		// uses the selected year option to filter data
+		const filteredData = data.map((item) => {
+			if (
+				selected === '' ||
+				selected === 'Any' ||
+				selected == item.launch_year
+			) {
+				return item;
+			}
+		});
+
+		// uses selected sort option to sort data
+		return filteredData.sort((a: { id: number }, b: { id: number }) => {
+			if (sortBy === 'asc') {
+				return a.id - b.id;
+			} else {
+				return b.id - a.id;
+			}
+		});
+	};

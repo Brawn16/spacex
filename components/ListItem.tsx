@@ -3,14 +3,9 @@ import React from 'react';
 import { months } from '../constants';
 import { getOrdinalNum } from '../helpers';
 import theme from '../styles/theme.style.js';
+import { LaunchInfo } from '../types';
 
-interface Props {
-	name: string;
-	id: number;
-	mission: string;
-}
-
-export function ListItem(props: Props) {
+export function ListItem(props: LaunchInfo) {
 	const { name, id, mission } = props;
 
 	const date = new Date(id * 1000);
@@ -33,8 +28,7 @@ export function ListItem(props: Props) {
 
 const styles = StyleSheet.create({
 	container: {
-		minWidth: 250,
-		maxWidth: 300,
+		width: 300,
 		flexDirection: 'row',
 		justifyContent: 'space-between',
 		borderRadius: 5,
@@ -51,6 +45,6 @@ const styles = StyleSheet.create({
 	},
 	date: {
 		fontSize: theme.FONT_SIZE_EXTRA_SMALL,
-		color: '#606060',
+		color: theme.SECONDARY_TEXT_COLOR,
 	},
 });

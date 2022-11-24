@@ -2,16 +2,16 @@ import React from 'react';
 import { StyleSheet, View, FlatList, Text, Image } from 'react-native';
 import { Select, ListItem, SortByButton, FetchButton } from './components';
 import { api } from './constants';
-import { formatFilterByYearOptions } from './helpers';
+import { formatFilterByYearOptions, sortAndFilterData } from './helpers';
 import { useFetchData } from './hooks/useFetchData';
 import { useFonts } from 'expo-font';
-import { LaunchInfo } from './types';
+import { SortBy } from './types';
 import theme from './styles/theme.style.js';
 
 // Things to change and add
 // 1. More theming and remove magic numbers and improve styling
 // 2. better types - not fully covered yet
-// 3. would make components more re usable eg: icons / images passed in from parent
+// 3. would make components more reusable eg: icons / images passed in from parent
 // 4. logo title moves when loading
 // 5. better use of loading and actually use error
 // 6. add testing coverage (should be higher up list)
@@ -19,7 +19,7 @@ import theme from './styles/theme.style.js';
 
 export default function App() {
 	const [selected, setSelectedFilter] = React.useState<string>('');
-	const [sortBy, setSortBy] = React.useState<'asc' | 'desc'>('asc');
+	const [sortBy, setSortBy] = React.useState<SortBy>('asc');
 	const { loading, data, error, refetch } = useFetchData(api);
 
 	const [loaded] = useFonts({
@@ -32,7 +32,7 @@ export default function App() {
 
 	const renderListItem = ({ item }) => {
 		if (item) {
-			return <ListItem name={item.name} id={item.id} mission={item.mission} />;
+			return <ListItem {...item} />;
 		}
 	};
 
@@ -45,28 +45,6 @@ export default function App() {
 	};
 
 	const selectData = formatFilterByYearOptions(data);
-
-	const sortedAndFilteredData = (data: LaunchInfo[]) => {
-		// uses the selected year option to filter data
-		const filteredData = data.map((item) => {
-			if (
-				selected === '' ||
-				selected === 'Any' ||
-				selected == item.launch_year
-			) {
-				return item;
-			}
-		});
-
-		// uses selected sort option to sort data
-		return filteredData.sort((a: { id: number }, b: { id: number }) => {
-			if (sortBy === 'asc') {
-				return a.id - b.id;
-			} else {
-				return b.id - a.id;
-			}
-		});
-	};
 
 	const sortByText = sortBy === 'asc' ? 'Descending' : 'Ascending';
 
@@ -99,7 +77,7 @@ export default function App() {
 				) : (
 					<FlatList
 						style={styles.launchList}
-						data={sortedAndFilteredData(data)}
+						data={sortAndFilterData(data, selected, sortBy)}
 						renderItem={renderListItem}
 						keyExtractor={(_, i) => i.toString()}
 					/>
